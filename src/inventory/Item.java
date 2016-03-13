@@ -3,7 +3,7 @@ package inventory;
 
 import rentable.Rentable;
 
-public class Item implements Rentable {
+public abstract class Item implements Rentable {
     private String itemID;
     private String productID;
     
@@ -21,7 +21,5 @@ public class Item implements Rentable {
     }
     
     @Override
-    public boolean rent(double price){
-        return true;
-    }
+    public abstract boolean rent(double price);
 }
