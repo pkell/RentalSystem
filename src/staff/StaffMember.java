@@ -9,12 +9,8 @@ public class StaffMember extends User {
     }
     
     @Override
-    public boolean login(String user, String pass){
+    public boolean login(String pass){
         return true;
     }
     
-    @Override
-    public String getUsername(){
-        return username;
-    }
 }

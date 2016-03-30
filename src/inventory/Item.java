@@ -22,4 +22,5 @@ public abstract class Item implements Rentable {
     
     @Override
     public abstract boolean rent(double price);
+      
 }
