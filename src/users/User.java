@@ -10,7 +10,6 @@ public abstract class User {
         username = user;
     }
     
-    public abstract boolean login(String pass);
     public String getUsername(){
         return username;
     }

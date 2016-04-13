@@ -7,7 +7,18 @@ public class Database implements DatabaseInterface {
         
     }
     @Override
-    public boolean canLogin(String user, String pass){
+    public boolean canCustomerLogin(String user, String pass){
+        return true;
+    }
+    
+    
+     @Override
+    public boolean canStaffLogin(String user, String pass){
+        return true;
+    }
+    
+     @Override
+    public boolean canManagerLogin(String user, String pass){
         return true;
     }
     

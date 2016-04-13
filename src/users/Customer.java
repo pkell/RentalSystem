@@ -13,12 +13,6 @@ public class Customer extends User {
         getBalanceFromDatabase();
     }
     
-    @Override
-    public boolean login(String pass){
-        return data.canLogin(this.username, pass);
-    }
-    
-    
     public double getBalance(){
         return balance;
     }
