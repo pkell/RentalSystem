@@ -71,4 +71,16 @@ public class Helper {
    public boolean topUp(double amount){
        return cust.topUp(amount);
    }
+   
+   public String getCustName(){
+       return cust.getUsername();
+   }
+   
+   public String getStaffName(){
+       return staff.getUsername();
+   }
+   
+   public double getBalance(){
+       return cust.getBalance();
+   }
 }

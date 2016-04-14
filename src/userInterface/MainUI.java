@@ -5,8 +5,6 @@
  */
 package userInterface;
 
-import users.*;
-import staff.*;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
@@ -15,9 +13,7 @@ import javax.swing.JOptionPane;
  * @author nrage
  */
 public class MainUI extends javax.swing.JFrame {
-    private Customer cust;
-    private StaffMember staff;
-    private Manager manager;
+    private Helper help = Helper.getInstance();
     CardLayout card;
     /**
      * Creates new form MainUI
@@ -1013,25 +1009,21 @@ public class MainUI extends javax.swing.JFrame {
         card = (CardLayout)mainPanel.getLayout();
         
         if(User.getSelectedItem() == "Customer"){
-            cust = new Customer(usernameField.getText().trim());
-            if(cust.login(passwordField.getText().trim())){
+            if(help.canCustomerLogin(usernameField.getText().trim(), passwordField.getText().trim())){
                 card.show(mainPanel, "main");
                 setUsergreeting();
             }
         }
         else if(User.getSelectedItem() == "Staff"){
-            staff = new StaffMember(usernameField.getText().trim());
-            if(staff.login(passwordField.getText().trim())){
-                card.show(mainPanel, "Staff");  
-                setStaffgreeting();
-                }
+            if(help.canStaffLogin(usernameField.getText().trim(), passwordField.getText().trim())){
+                card.show(mainPanel, "Staff");
             }
+        }
         else if(User.getSelectedItem() == "Manager"){
-            manager = new Manager(usernameField.getText().trim());
-            if(manager.login(passwordField.getText().trim())){
-                card.show(mainPanel, "Manager");              
-                }
+            if(help.canManagerLogin(usernameField.getText().trim(), passwordField.getText().trim())){
+                card.show(mainPanel, "Manager");
             }
+        }
     }//GEN-LAST:event_submitActionPerformed
 
     private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFieldActionPerformed
@@ -1045,7 +1037,7 @@ public class MainUI extends javax.swing.JFrame {
 
     private void submitTopUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitTopUpActionPerformed
         // TODO add your handling code here:
-        cust.topUp(Double.parseDouble(amount.getText().trim()));
+        help.topUp(Double.parseDouble(amount.getText().trim()));
         card.show(mainPanel, "main");
         setUsergreeting();
     }//GEN-LAST:event_submitTopUpActionPerformed
@@ -1160,21 +1152,23 @@ public class MainUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton25ActionPerformed
 
     public void setUsergreeting(){
-        userGreeting.setText("Logged in as " + cust.getUsername() + "  Balance: " + cust.getBalance());
+        userGreeting.setText("Logged in as " + help.getCustName() + "  Balance: " + help.getBalance());
     }
     
     public void setStaffgreeting(){
-        staffGreeting.setText("Logged in as " + staff.getUsername());
+        staffGreeting.setText("Logged in as " + help.getStaffName());
     }
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    
+   // public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+    /*
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -1192,14 +1186,16 @@ public class MainUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MainUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+    */
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainUI().setVisible(true);
-            }
-        });
-    }
+     //   java.awt.EventQueue.invokeLater(new Runnable() {
+       //     public void run() {
+         //       new MainUI().setVisible(true);
+           // }
+       // });
+   // }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Manager;
