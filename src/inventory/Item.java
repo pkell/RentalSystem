@@ -17,7 +17,7 @@ public class Item extends Product implements Rentable {
     private String itemID;
     private Product product; 
     private int priceCode;
- 
+    private boolean available;
 
    
     
@@ -26,6 +26,7 @@ public class Item extends Product implements Rentable {
         super(product, title, type, genre, copies);
         itemID = item;
         setPriceCode(priceCode);
+        available = true;
     }
 
     public Item(Product p1, String item, int priceCode) 
@@ -33,28 +34,44 @@ public class Item extends Product implements Rentable {
         product = p1;
         itemID = item;
         setPriceCode(priceCode);
+        available = true;
     }
     
+    public boolean getAvailablibilty()
+    {
+      return available;    
+    }
+    
+    public void setAvailability(boolean b)
+    {
+      available = b;    
+    }
+    
+    @Override
     public String getTitle()
     {
      return product.getTitle();
     }
     
+    @Override
     public int getCopies()
     {
         return product.getCopies();
     }
     
+    @Override
     public void setCopies(int _copies)
     {
      product.setCopies(_copies);
     }
     
+    @Override
     public String getGenre()
     {
      return product.getGenre();   
     }
     
+    @Override
     public String getProductID()
     {
         return product.getProductID();
@@ -73,11 +90,13 @@ public class Item extends Product implements Rentable {
     }
     
     
+    @Override
     public void setProductID(String ID)
     {
         product.setProductID(ID);
     }
 
+    @Override
     public void setTitle(String title) //get item title 
     { 
        product.setTitle(title);
@@ -88,6 +107,7 @@ public class Item extends Product implements Rentable {
         itemID = ID;
     }
     
+    @Override
     public String getType()
     {
         return product.getType();

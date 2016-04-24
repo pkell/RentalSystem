@@ -1,6 +1,7 @@
 
 package database;
 
+import Rental.Rental;
 import inventory.Item;
 import inventory.Product;
 import java.util.ArrayList;

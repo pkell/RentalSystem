@@ -5,13 +5,12 @@
  */
 package userInterface;
 
-import javax.swing.*;
 /**
  *
  * @author nrage
  */
 public class PanelFactory {
-    private Helper help;
+    private final Helper help;
     
     public PanelFactory(Helper help) {
         this.help = help;
@@ -48,10 +47,6 @@ public class PanelFactory {
                 break; 
             case 7:
                 panel = new SearchPanel();
-                panel.setPanelManager(pm);
-                break; 
-            case 8:
-                panel = new CheckRentedItemsPanel();
                 panel.setPanelManager(pm);
                 break; 
         }

@@ -12,15 +12,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 /**
  *
  * @author nrage
  */
-public class LoginPanel extends Panel{
-    private Helper help = Helper.getInstance();
+public final class LoginPanel extends Panel{
+    private final Helper help = Helper.getInstance();
     private PanelManager pm;
     private JPanel panel;
 

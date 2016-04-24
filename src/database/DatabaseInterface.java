@@ -1,6 +1,7 @@
 
 package database;
 
+import Rental.Rental;
 import inventory.Item;
 import inventory.Product;
 
@@ -14,5 +15,4 @@ public interface DatabaseInterface {
     public Item getItemByID(String id);
     public void createProduct(String ID, String title, String type, String genre, int copies);
     public void setProduct(Product p);
-    
 }

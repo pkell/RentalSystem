@@ -6,40 +6,32 @@
 package userInterface;
 
 import Rental.Rental;
-import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
-import database.Database;
 import inventory.Item;
-import inventory.Product;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import users.Customer;
 
 /**
  *
  * @author Kamil
  */
 public class SearchPanel extends Panel{
-    private JTextField txb_Title;
-    private JLabel jcomp2;
-    private JLabel jcomp3;
-    private JLabel jcomp4;
-    private JComboBox jcb_Type;
-    private JButton btn_Search, btn_back;
+    private final JTextField txb_Title;
+    private final JLabel jcomp2;
+    private final JLabel jcomp3;
+    private final JLabel jcomp4;
+    private final JComboBox jcb_Type;
+    private final JButton btn_Search, btn_back;
     private PanelManager pm;
-    private Helper help = Helper.getInstance();
-    private Customer cust;
+    private final Helper help = Helper.getInstance();
     public SearchPanel() {
         
-        cust = new Customer("Kamil");
         panel = new JPanel();
         //construct preComponents
         String[] jcb_TypeItems = {"Movie", "Game"};
@@ -98,13 +90,13 @@ public class SearchPanel extends Panel{
         
     private void btnAddActionPerformed(ActionEvent evt)
     {
-        String title = "";
+        String title;
         Item p = null;
         title = txb_Title.getText();
         p = help.getItemByTitle(title);
         int n;
-        int copies = 0;
-        if(p != null)
+        //String sct = (String)cb.getSelectedItem();
+        if(p != null && (p.getType().trim().equals(jcb_Type.getSelectedItem())))
         {
          JOptionPane.showMessageDialog(null, "Product ID: " + p.getProductID()+"\n"+ 
                        "Item ID: " + p.getItemID() + "\n"+
@@ -113,26 +105,24 @@ public class SearchPanel extends Panel{
                        "Type: "+ p.getType() + "\n" +
                        "Genre: " + p.getGenre() + "\n"+ 
                        "Available Copies: " + p.getCopies()+ "\n");
-            copies = p.getCopies();
-            if(copies > 0)                //item available   
+            if(p.getAvailablibilty() == true)                //item available   
             {  
                 n = JOptionPane.showConfirmDialog(null,"Would you like to add this product to your basket ?"
                         , " ", JOptionPane.YES_NO_OPTION);
                 if(n == JOptionPane.YES_OPTION)
                 {
+                    //
                     String[] choices = {"1","2","3","4","5","6", "7"}; //max rental days = 7
                     String input = (String) JOptionPane.showInputDialog(null, "How many nights ?", //get days of rental 
                     "Pick amount of nights to rent the product", JOptionPane.QUESTION_MESSAGE, null, choices,
                     choices[0]); // Initial choice
                     Rental r = new Rental(p, Integer.parseInt(input));
-                    cust.addRental(r);                                  //add the rental to the basket
-                    p.setCopies(copies - 1);
+                    help.addToBasket(r);                                  //add the rental to the basket
                     JOptionPane.showMessageDialog(null, "Item has been added to your basket"); 
-                    JOptionPane.showMessageDialog(null, cust.header() + "\n" + cust.footer());
                 }
             }
             else
-              JOptionPane.showMessageDialog(null, "Sorry no copies available at this moment ");
+              JOptionPane.showMessageDialog(null, "Sorry, this item is not available at the moment.");
         }
         else 
          JOptionPane.showMessageDialog(null, "No Item Found");   

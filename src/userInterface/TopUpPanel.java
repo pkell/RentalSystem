@@ -21,10 +21,9 @@ import javax.swing.JTextField;
 public class TopUpPanel extends Panel {
     
     private PanelManager pm;
-    private JLabel lbl_TopUp, lbl_balance, lbl_currentBalance;
+    private final JLabel lbl_TopUp, lbl_balance, lbl_currentBalance;
     private JTextField txb_TopUpAmount;
-    private JButton btn_TopUp;
-    private JButton btn_back;
+    private final JButton btn_TopUp, btn_back;
     private Helper help = Helper.getInstance();
     
     public TopUpPanel()

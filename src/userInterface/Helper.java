@@ -1,16 +1,15 @@
 
 package userInterface;
 
+import Rental.Rental;
 import staff.*;
 import users.*;
 import database.*;
 import inventory.Item;
-import inventory.Product;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
+import java.util.Vector;
 
 public class Helper {
-    private static Helper help = new Helper();
+    private static final Helper help = new Helper();
     private DatabaseInterface dbConn;
     private Customer cust = null;
     private StaffMember staff = null;
@@ -87,7 +86,21 @@ public class Helper {
    public double getBalance(){
        return cust.getBalance();
    }
+   
+   public void addRental(Rental r)
+   {
+       cust.addRental(r);
+   }
   
+   public String header()
+   {
+       return cust.header();
+   }
+   
+   public String footer()
+   {
+       return cust.footer();
+   }
     public Item getItemByTitle(String title)
     {
         return dbConn.getItemByTitle(title);
@@ -97,6 +110,41 @@ public class Helper {
     {
         return dbConn.getItemByID(id);
      }
+    
+    public double getTotalCharge() 
+    {
+        return cust.getTotalCharge();  
+    }
+    
+    public void emptyBasket()
+    {
+      cust.emptyBasket();    
+    }
+    
+    public void addToBasket(Rental r)
+    {
+        cust.addToBasket(r);
+    }
+    
+    public Vector getBasket()
+    {
+     return cust.getBasket();   
+    }
+    
+    public int getTotalFrequentRenterPoints()
+    {
+        return cust.getTotalFrequentRenterPoints();
+    }
+    
+    public int getFrequentRenterPoints()
+    {
+        return cust.getFrequentRenterPoints();
+    }
+    
+    public void setFrequentRenterPoints(int p)
+    {
+        cust.setFrequentRenterPoints(p);
+    }
     
     public void createProduct(String ID, String title, String type, String genre, int copies)
     {

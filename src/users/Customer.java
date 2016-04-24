@@ -4,28 +4,34 @@ package users;
 import database.Database;
 import paymentAPI.Payment;
 import Rental.Rental;
+import inventory.Item;
 import java.util.Enumeration;
 import java.util.Vector;
 
 public class Customer extends User {
     private final Database data = new Database();
     private double balance;
-    private final Vector rentals = new Vector(); //basket of rented items 
+    private final Vector rentals = new Vector(); //vector of rented items
+    private final Vector basket = new Vector();
     private String accType;
-    private int rentalPoints;
+    private int frequentRenterPoints;
     
     
     public Customer(String user){
         super(user);
         getBalanceFromDatabase();
-        getRentalPoints();
- 
+        getFrequentRenterPoints();
     }
     
 
-    public int getRentalPoints()
+    public int getFrequentRenterPoints()
     {
-      return rentalPoints;    
+      return frequentRenterPoints;    
+    }
+    
+    public void setFrequentRenterPoints(int p)
+    {
+         frequentRenterPoints += p;
     }
     
     public String getAccountType()
@@ -42,8 +48,14 @@ public class Customer extends User {
         return username;                 //returns customers username
     }
     
-    public void addRental(Rental arg) {    
-     rentals.addElement(arg);            //add rental to the basket
+    public void addRental(Rental arg) 
+    {    
+     rentals.addElement(arg);            //add to rented items
+    }
+    
+    public void addToBasket(Rental arg)
+    { 
+      basket.addElement(arg);            //add to basket
     }
     
     public String displayRentals()
@@ -54,6 +66,7 @@ public class Customer extends User {
       return result;
     }
     
+    
     public String header()
     {
      Enumeration rentals1 = rentals.elements(); 
@@ -63,7 +76,7 @@ public class Customer extends User {
             Rental each = (Rental) rentals1.nextElement(); 
             //show figures for each rental 
             result += String.valueOf(each.getItem().getType()) + " - " + String.valueOf(each.getItem().getTitle())+ ": " + 
-            String.valueOf(each.getCharge()) + " euro\n"; 
+            String.valueOf(each.getCharge()) + " euro<BR>\n"; 
         }
         return result;
     }
@@ -77,16 +90,24 @@ public class Customer extends User {
         result += "On this rental you earned " + 
         String.valueOf(getTotalFrequentRenterPoints()) + 
         " frequent renter points"; 
-        rentalPoints += getTotalFrequentRenterPoints();
+        frequentRenterPoints += getTotalFrequentRenterPoints();
         return result; 
     } 
 
+    public Vector getBasket()
+    {
+        return basket;
+    }
     
+    public void emptyBasket()
+    {
+      basket.clear();
+    }
     
-    private double getTotalCharge() 
+    public double getTotalCharge() 
     { 
         double result = 0; 
-        Enumeration rentals1 = rentals.elements(); 
+        Enumeration rentals1 = basket.elements(); 
         while (rentals1.hasMoreElements()) 
         { 
             Rental each = (Rental) rentals1.nextElement(); //for each rental price is added to result
@@ -95,7 +116,7 @@ public class Customer extends User {
         return result; //whole price is returned
     } 
 
-    private int getTotalFrequentRenterPoints()
+    public int getTotalFrequentRenterPoints()
     { 
         int result = 0; 
         Enumeration rentals1 = rentals.elements(); 

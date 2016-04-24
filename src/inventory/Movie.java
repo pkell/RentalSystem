@@ -20,31 +20,37 @@ public class Movie extends Item {
         this.item = item;
     }
  
+    @Override
     public int getCopies()
     {
         return item.getCopies();
     }
     
+    @Override
     public void setCopies(int _copies)
     {
         item.setCopies(_copies);
     }
     
+    @Override
     public String getProductID()
     {
         return item.getProductID();
     }
 
+    @Override
     public String getTitle () //get item title 
     { 
        return item.getTitle();
     }
        
+    @Override
     public String getItemID()
     {
         return item.getItemID();
     }
  
+    @Override
     public int getPriceCode() 
     { 
         return item.getPriceCode(); 
