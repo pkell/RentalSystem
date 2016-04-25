@@ -149,6 +149,6 @@ public class Helper {
     
     public void createProduct(String ID, String title, String type, String genre, int copies)
     {
-        //dbConn.createProduct(ID, title, type, genre, 0);
+        dbConn.createProduct(ID, title, type, genre, 0);
     }
 }
