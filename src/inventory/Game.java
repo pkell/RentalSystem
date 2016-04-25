@@ -6,7 +6,7 @@ public class Game extends Item {
     private Item item;
  
     
-     public Game(String product, String title, String item, String type, int copies, String genre, int price)
+     public Game(String product, String title, String item, String type, int copies, String genre, String price)
      {
         super(product, title, item, type, copies, genre, price);
  
@@ -32,7 +32,7 @@ public class Game extends Item {
     }
  
     @Override
-    public int getPriceCode() 
+    public String getPriceCode() 
     { 
         return item.getPriceCode(); 
     } 

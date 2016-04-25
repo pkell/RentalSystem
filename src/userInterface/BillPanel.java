@@ -33,7 +33,7 @@ public class BillPanel extends Panel {
         panel.add(h);
         panel.add(btn_back);
         
-        h.setBounds (260, 5, 200, 400);
+        h.setBounds (260, 5, 400, 400);
         btn_back.setBounds(100, 265, 100, 25);
         
          btn_back.addActionListener(new ActionListener() {

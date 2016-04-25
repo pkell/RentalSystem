@@ -3,7 +3,7 @@ package inventory;
 
  abstract class Price
  { 
-    abstract int getPriceCode(); 
+    abstract String getPriceCode(); 
     abstract double getCharge(int daysRented); 
     int getFrequentRenterPoints(int daysRented){ 
     return 1;
@@ -12,7 +12,7 @@ package inventory;
 class ChildrensPrice extends Price 
 { 
  @Override
- int getPriceCode() 
+ String getPriceCode() 
  { 
     return Item.CHILDRENS; 
  } 
@@ -28,7 +28,7 @@ class ChildrensPrice extends Price
 
 class NewReleasePrice extends Price { 
  @Override
- int getPriceCode() 
+ String getPriceCode() 
  { 
  return Item.NEW_RELEASE; 
  }
@@ -44,7 +44,7 @@ int getFrequentRenterPoints(int daysRented) {
 
  class RegularPrice extends Price {   
  @Override
- int getPriceCode() 
+ String getPriceCode() 
  { 
   return Item.REGULAR; 
  } 
@@ -60,7 +60,7 @@ int getFrequentRenterPoints(int daysRented) {
  class ps4Price extends Price
  {
     @Override
-    int getPriceCode() 
+    String getPriceCode() 
     { 
        return Item.PS4; 
     } 
@@ -83,7 +83,7 @@ int getFrequentRenterPoints(int daysRented) {
  class ps3Price extends Price
  {
     @Override
-    int getPriceCode() 
+    String getPriceCode() 
     { 
        return Item.PS3; 
     }  
@@ -100,7 +100,7 @@ int getFrequentRenterPoints(int daysRented) {
 class xboxOnePrice extends Price
  {
     @Override
-    int getPriceCode() 
+    String getPriceCode() 
     { 
        return Item.XBOXONE; 
     } 

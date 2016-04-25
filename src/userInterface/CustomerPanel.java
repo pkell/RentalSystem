@@ -18,7 +18,7 @@ import javax.swing.JButton;
  */
 public class CustomerPanel extends Panel {
     private final JButton btn_rentProdcut, btn_topUp, btn_searchProducts, btn_logout, btn_basket, btn_checkRentedItems;
-    private final JLabel lbl_welcome, lbl_custName, lbl_rentalPoints, lbl_points, lbl_currentBalance, lbl_balance;
+    private final JLabel lbl_welcome, lbl_custName, lbl_rentalPoints, lbl_points, lbl_currentBalance, lbl_balance, lbl_accType, lbl_acc;
     private PanelManager pm;
     private final Helper help = Helper.getInstance();
     public CustomerPanel() {
@@ -39,6 +39,8 @@ public class CustomerPanel extends Panel {
         lbl_rentalPoints = new JLabel (Integer.toString(help.getTotalFrequentRenterPoints()));
         lbl_balance = new JLabel("Current Balance: ");
         lbl_currentBalance = new JLabel(Double.toString(help.getBalance()));
+        lbl_acc = new JLabel("Account type: ");
+        lbl_accType = new JLabel(help.getAccountType());
 
         //adjust size and set layout
         panel.setPreferredSize (new Dimension (667, 366));
@@ -57,6 +59,8 @@ public class CustomerPanel extends Panel {
         panel.add (lbl_rentalPoints);
         panel.add (lbl_balance);
         panel.add (lbl_currentBalance);
+        panel.add (lbl_acc);
+        panel.add (lbl_accType);
         //set component bounds (only needed by Absolute Positioning)
         btn_rentProdcut.setBounds (240, 70, 200, 50);
         btn_searchProducts.setBounds (240, 125, 200, 50);
@@ -70,6 +74,8 @@ public class CustomerPanel extends Panel {
         lbl_rentalPoints.setBounds(135, 30, 135, 25);
         lbl_balance.setBounds(5, 55, 130, 25);
         lbl_currentBalance.setBounds(135, 55, 135, 25);
+        lbl_acc.setBounds(5, 80, 130, 25);
+        lbl_accType.setBounds(135, 80, 135, 25);
        
         btn_topUp.addActionListener(new ActionListener() {
             @Override

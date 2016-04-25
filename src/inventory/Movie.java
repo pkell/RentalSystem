@@ -6,7 +6,7 @@ public class Movie extends Item {
     private Item item;
  
     
-    public Movie(String product, String title, String type, String genre,int copies, String item, int priceCode)
+    public Movie(String product, String title, String type, String genre,int copies, String item, String priceCode)
     { 
         super(product, title, type, genre, copies, item, priceCode);
       
@@ -50,8 +50,8 @@ public class Movie extends Item {
         return item.getItemID();
     }
  
-    @Override
-    public int getPriceCode() 
+ 
+    public String getPriceCode() 
     { 
         return item.getPriceCode(); 
     } 
