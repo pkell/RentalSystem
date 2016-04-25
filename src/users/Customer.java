@@ -7,6 +7,8 @@ import Rental.Rental;
 import inventory.Item;
 import java.util.Enumeration;
 import java.util.Vector;
+import javax.swing.JOptionPane;
+import userInterface.Helper;
 
 public class Customer extends User {
     private final Database data = new Database();
@@ -15,12 +17,14 @@ public class Customer extends User {
     private final Vector basket = new Vector();
     private String accType;
     private int frequentRenterPoints;
+    private final Helper help = Helper.getInstance();
     
     
     public Customer(String user){
         super(user);
         getBalanceFromDatabase();
         getFrequentRenterPoints();
+        accType = "Silver";
     }
     
 
@@ -31,7 +35,7 @@ public class Customer extends User {
     
     public void setFrequentRenterPoints(int p)
     {
-         frequentRenterPoints += p;
+         frequentRenterPoints = p;
     }
     
     public String getAccountType()
@@ -39,6 +43,10 @@ public class Customer extends User {
       return accType;    
     }
     
+    public void setAccountType(String a)
+    {
+        accType = a;
+    }
     public double getBalance(){
         return balance;
     }
@@ -75,8 +83,9 @@ public class Customer extends User {
         { 
             Rental each = (Rental) rentals1.nextElement(); 
             //show figures for each rental 
-            result += String.valueOf(each.getItem().getType()) + " - " + String.valueOf(each.getItem().getTitle())+ ": " + 
-            String.valueOf(each.getCharge()) + " euro<BR>\n"; 
+            result += "ID: " + String.valueOf(each.getItem().getItemID()) + " - " +String.valueOf(each.getItem().getType()) + " - " + String.valueOf(each.getItem().getPriceCode())  
+                   +" - "+ String.valueOf(each.getItem().getTitle())+ ": "  
+                   +String.valueOf(each.getCharge()) + " euro<BR>\n"; 
         }
         return result;
     }
@@ -145,6 +154,43 @@ public class Customer extends User {
         return false;
     } 
 
+     public boolean checkIfInBasket(String id)
+    {
+        boolean in = false;
+        Enumeration rentals1 = basket.elements(); 
+        while (rentals1.hasMoreElements()) 
+        { 
+            Rental each = (Rental) rentals1.nextElement(); 
+            if(each.getItem().getItemID().equals(id))
+            {
+                in = true;    
+            }
+        }
+        return in;
+    }
+     
+    public void displayProductInfo(Item p)
+    {
+        JOptionPane.showMessageDialog(null, "Product ID: " + p.getProductID()+"\n"+ 
+                       "Item ID: " + p.getItemID() + "\n"+
+                       "Price per night: " + p.getCharge(1) + "\n"+
+                       "Title: " + p.getTitle()+"\n"+
+                       "Type: "+ p.getType() + "\n" +
+                       "Genre: " + p.getGenre() + "\n"+ 
+                       "Available Copies: " + p.getCopies()+ "\n");
+    }
+     
+    public void createRental(Item p)
+    {
+        String[] choices = {"1","2","3","4","5","6", "7"}; //max rental days = 7
+        String input = (String) JOptionPane.showInputDialog(null, "How many nights ?", //get days of rental 
+        "Pick amount of nights to rent the product", JOptionPane.QUESTION_MESSAGE, null, choices,
+        choices[0]); // Initial choice    
+        Rental r = new Rental(p, Integer.parseInt(input));
+        help.addToBasket(r);                                  //add the rental to the basket
+        JOptionPane.showMessageDialog(null, "Item has been added to your basket"); 
+    }
+        
     public boolean login(String trim) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

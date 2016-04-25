@@ -5,23 +5,23 @@ import rentable.Rentable;
 
 public class Item extends Product implements Rentable {
     
-    public static final int CHILDRENS = 1; 
-    public static final int REGULAR = 0; 
-    public static final int NEW_RELEASE = 2;  
+    public static final String CHILDRENS = "Childrens"; 
+    public static final String REGULAR = "Regular"; 
+    public static final String NEW_RELEASE = "New Release";  
     
-    public static final int PS3 = 3; 
-    public static final int PS4 = 4; 
-    public static final int XBOXONE = 5;
+    public static final String PS3 = "PS3"; 
+    public static final String PS4 = "PS4"; 
+    public static final String XBOXONE = "Xbox One";
    
     
     private String itemID;
     private Product product; 
-    private int priceCode;
+    private String priceCode;
     private boolean available;
 
    
     
-    public Item(String product, String title, String type, String genre, int copies, String item, int _priceCode)
+    public Item(String product, String title, String type, String genre, int copies, String item, String priceCode)
     {
         super(product, title, type, genre, copies);
         itemID = item;
@@ -29,7 +29,7 @@ public class Item extends Product implements Rentable {
         available = true;
     }
 
-    public Item(Product p1, String item, int priceCode) 
+    public Item(Product p1, String item, String priceCode) 
     {
         product = p1;
         itemID = item;
@@ -84,7 +84,7 @@ public class Item extends Product implements Rentable {
     }
     
     
-    public int getPriceCode() 
+    public String getPriceCode() 
     { 
         return price.getPriceCode(); 
     }
@@ -113,7 +113,7 @@ public class Item extends Product implements Rentable {
         return product.getType();
     }
       
-    public void setPriceCode(int arg) 
+    public void setPriceCode(String arg) 
     {  
             switch (arg) 
             {

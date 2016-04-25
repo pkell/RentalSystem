@@ -10,6 +10,8 @@ import inventory.Item;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Enumeration;
+import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -30,12 +32,14 @@ public class SearchPanel extends Panel{
     private final JButton btn_Search, btn_back;
     private PanelManager pm;
     private final Helper help = Helper.getInstance();
+    private Vector basket;
     public SearchPanel() {
         
         panel = new JPanel();
         //construct preComponents
         String[] jcb_TypeItems = {"Movie", "Game"};
 
+        basket = help.getBasket();
         //construct components
         txb_Title = new JTextField (0);
         jcomp2 = new JLabel ("Search for Item");
@@ -90,39 +94,65 @@ public class SearchPanel extends Panel{
         
     private void btnAddActionPerformed(ActionEvent evt)
     {
-        String title;
+        String title, type;
         Item p = null;
         title = txb_Title.getText();
-        p = help.getItemByTitle(title);
+        type =  jcb_Type.getSelectedItem().toString();
+        p = help.getItemByTitle(title, type);
         int n;
-        //String sct = (String)cb.getSelectedItem();
-        if(p != null && (p.getType().trim().equals(jcb_Type.getSelectedItem())))
+        if(p != null && (p.getType().trim().equalsIgnoreCase(type))) 
         {
-         JOptionPane.showMessageDialog(null, "Product ID: " + p.getProductID()+"\n"+ 
-                       "Item ID: " + p.getItemID() + "\n"+
-                       "Price per night: " + p.getCharge(1) + "\n"+
-                       "Title: " + p.getTitle()+"\n"+
-                       "Type: "+ p.getType() + "\n" +
-                       "Genre: " + p.getGenre() + "\n"+ 
-                       "Available Copies: " + p.getCopies()+ "\n");
+         if(p.getType().equals("Movie"))
+         {
+            help.displayProductInfo(p);
             if(p.getAvailablibilty() == true)                //item available   
             {  
+               String id = p.getItemID();
+               if(!help.checkIfInBasket(id))
+               { 
                 n = JOptionPane.showConfirmDialog(null,"Would you like to add this product to your basket ?"
                         , " ", JOptionPane.YES_NO_OPTION);
                 if(n == JOptionPane.YES_OPTION)
-                {
-                    //
-                    String[] choices = {"1","2","3","4","5","6", "7"}; //max rental days = 7
-                    String input = (String) JOptionPane.showInputDialog(null, "How many nights ?", //get days of rental 
-                    "Pick amount of nights to rent the product", JOptionPane.QUESTION_MESSAGE, null, choices,
-                    choices[0]); // Initial choice
-                    Rental r = new Rental(p, Integer.parseInt(input));
-                    help.addToBasket(r);                                  //add the rental to the basket
-                    JOptionPane.showMessageDialog(null, "Item has been added to your basket"); 
-                }
+                   help.createRental(p);
+                else 
+                    JOptionPane.showMessageDialog(null, "Sorry, this item is not available at the moment."); 
+               }
+               else 
+                  JOptionPane.showMessageDialog(null, "This item is already in your basket");  
             }
-            else
-              JOptionPane.showMessageDialog(null, "Sorry, this item is not available at the moment.");
+          }
+         else //game
+          {
+            help.displayProductInfo(p);
+            if(p.getAvailablibilty() == true)                //item available   
+            {  
+               String id = p.getItemID();
+               if(!help.checkIfInBasket(id))
+               { 
+                n = JOptionPane.showConfirmDialog(null,"Would you like to add this product to your basket ?"
+                        , " ", JOptionPane.YES_NO_OPTION);
+                if(n == JOptionPane.YES_OPTION)
+                { 
+                    String[] console = {"PS3", "PS4", "XboxOne"};
+                    String c = (String) JOptionPane.showInputDialog(null, "Pick platform", //get days of rental 
+                    "Pick platform", JOptionPane.QUESTION_MESSAGE, null, console,
+                    console[0]); // Initial choice
+                    if(p.getPriceCode().equals(c))
+                       help.createRental(p);
+                    else
+                    {
+                       p = help.getItemByTitleAndPlatform(title, c);
+                       if(p != null)               
+                          help.createRental(p);
+                       else
+                          JOptionPane.showMessageDialog(null, "No item for this console");  
+                    }
+                }
+               }
+               else 
+                  JOptionPane.showMessageDialog(null, "This item is already in your basket");  
+            }
+          }
         }
         else 
          JOptionPane.showMessageDialog(null, "No Item Found");   

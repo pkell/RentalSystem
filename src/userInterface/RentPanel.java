@@ -9,6 +9,8 @@ import Rental.Rental;
 import inventory.Item;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Enumeration;
+import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -26,10 +28,13 @@ private final JTextField txb_itemID;
 private final JButton btn_add, btn_back;
 private final JLabel lbl_itemID;
 private final Helper help = Helper.getInstance();
+private Vector basket;
+
 public RentPanel() 
 {
     panel = new JPanel();
     panel.setLayout(null);
+    basket = help.getBasket();
     
     lbl_itemID = new JLabel("Item ID: ");
     panel.add(lbl_itemID);
@@ -74,14 +79,12 @@ private void btnAddActionPerformed(ActionEvent evt) {
         {
          if(p.getAvailablibilty() == true)                //item not available   
          {             
-            String[] choices = {"1","2","3","4","5","6", "7"}; //max rental days = 7
-            String input = (String) JOptionPane.showInputDialog(null, "How many nights ?", //get days of rental 
-            "Pick amount of nights to rent the product", JOptionPane.QUESTION_MESSAGE, null, choices,
-            choices[0]); // Initial choice     
-            Rental r1 = new Rental(p , Integer.parseInt(input)); //create new rental for picked amount of days
-            help.addToBasket(r1);                                  //add the rental to the basket
-             JOptionPane.showMessageDialog(null, "Item has been added to your basket"); 
-             //add product to your basket 
+            if(!help.checkIfInBasket(id))
+            {
+                help.createRental(p);
+            }
+            else
+             JOptionPane.showMessageDialog(null, "This item is already in your basket");   
          }
          else
              JOptionPane.showMessageDialog(null, "Sorry, this item is not available at the moment.");
@@ -90,7 +93,7 @@ private void btnAddActionPerformed(ActionEvent evt) {
             JOptionPane.showMessageDialog(null, "Sorry, this item doesn't exist in our system");
    
     }                             
-
+    
     @Override
     public JPanel sendToWindow()
     { 
