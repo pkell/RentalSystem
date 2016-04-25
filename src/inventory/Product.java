@@ -7,6 +7,7 @@ public class Product {
     private String type;
     private String genre;
     private int copies;
+    private String console;
     
     public Product(String ID, String _title, String _type, String _genre, int _copies)
     {
@@ -15,6 +16,24 @@ public class Product {
         type = _type;
         genre = _genre;
         copies = _copies;
+    }
+    
+    public Product(String ID, String _title, String _type, String _console, String _genre, int _copies)
+    {
+        productID = ID;
+        title = _title;
+        type = _type;
+        console = _console;
+        genre = _genre;
+        copies = _copies;
+    }
+
+    public String getConsole() {
+        return console;
+    }
+
+    public void setConsole(String console) {
+        this.console = console;
     }
 
     public int getCopies() {

@@ -10,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -29,13 +28,12 @@ public class TopUpPanel extends Panel {
     public TopUpPanel()
     {
         panel = new JPanel();
-        String str = "";
         //construct components
         lbl_TopUp = new JLabel ("Enter Amount: ");
         txb_TopUpAmount = new JTextField (0);
         btn_TopUp = new JButton ("Top Up");
         btn_back = new JButton ("Back");
-        lbl_balance = new JLabel(str = Double.toString(help.getBalance()));
+        lbl_balance = new JLabel(Double.toString(help.getBalance()));
         lbl_currentBalance = new JLabel("Current Balance: ");
 
         //adjust size and set layout
@@ -67,11 +65,7 @@ public class TopUpPanel extends Panel {
         btn_TopUp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double result = help.getBalance();
-                result += Double.parseDouble(txb_TopUpAmount.getText());
-                help.setBalance(result);
-                JOptionPane.showMessageDialog(null, "Well done you topped your account by " + txb_TopUpAmount.getText() +"\n"
-                                                    + "Your new balance is: " + result);
+                help.topUp(Double.parseDouble(txb_TopUpAmount.getText())); 
                 pm.getPanelFromFactory(6);
                 }
                 });

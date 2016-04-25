@@ -5,17 +5,12 @@
  */
 package userInterface;
 
-import Rental.Rental;
-import inventory.Item;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Enumeration;
-import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -25,29 +20,29 @@ import javax.swing.JTextField;
  */
 public class SearchPanel extends Panel{
     private final JTextField txb_Title;
-    private final JLabel jcomp2;
-    private final JLabel jcomp3;
-    private final JLabel jcomp4;
-    private final JComboBox jcb_Type;
+    private final JLabel lbl_searchItem, lbl_title, lbl_type, lbl_platform;
+    private final JComboBox jcb_Type, jcb_platform;
     private final JButton btn_Search, btn_back;
     private PanelManager pm;
     private final Helper help = Helper.getInstance();
-    private Vector basket;
     public SearchPanel() {
         
         panel = new JPanel();
-        //construct preComponents
-        String[] jcb_TypeItems = {"Movie", "Game"};
-
-        basket = help.getBasket();
+        
+        //components of combo boxes
+        String[] jcb_TypeItems = {"Movie", "Game"};  
+        String[] jcb_PlatformTypes = {"PS3", "PS4", "Xbox One"};
+        
         //construct components
         txb_Title = new JTextField (0);
-        jcomp2 = new JLabel ("Search for Item");
-        jcomp3 = new JLabel ("Title: ");
-        jcomp4 = new JLabel ("Type: ");
+        lbl_searchItem = new JLabel ("Search for Item");
+        lbl_title = new JLabel ("Title: ");
+        lbl_type = new JLabel ("Type: ");
         jcb_Type = new JComboBox (jcb_TypeItems);
         btn_Search = new JButton ("Search");
         btn_back = new JButton();
+        jcb_platform = new JComboBox(jcb_PlatformTypes);
+        lbl_platform = new JLabel("Platform: ");
         
         //adjust size and set layout
         panel.setPreferredSize (new Dimension (667, 366));
@@ -55,31 +50,37 @@ public class SearchPanel extends Panel{
 
         //add components
         panel.add (txb_Title);
-        panel.add (jcomp2);
-        panel.add (jcomp3);
-        panel.add (jcomp4);
+        panel.add (lbl_searchItem);
+        panel.add (lbl_title);
+        panel.add (lbl_type);
         panel.add (jcb_Type);
         panel.add (btn_Search);
         panel.add (btn_back);
-
+        panel.add (jcb_platform);
+        panel.add (lbl_platform);
+        
         //set component bounds (only needed by Absolute Positioning)
         txb_Title.setBounds (245, 95, 100, 25);
-        jcomp2.setBounds (250, 45, 90, 25);
-        jcomp3.setBounds (210, 95, 35, 25);
-        jcomp4.setBounds (210, 125, 35, 25);
+        lbl_searchItem.setBounds (250, 45, 90, 25);
+        lbl_title.setBounds (210, 95, 35, 25);
+        lbl_type.setBounds (210, 125, 35, 25);
         jcb_Type.setBounds (245, 125, 100, 25);
-        btn_Search.setBounds (245, 155, 100, 25);
-        btn_back.setBounds (245, 185, 100, 25);
+        btn_Search.setBounds (245, 185, 100, 25);
+        btn_back.setBounds (245, 215, 100, 25);
+        jcb_platform.setBounds (245, 155, 100, 25);
+        lbl_platform.setBounds (190, 155, 120, 25);
         
+        jcb_platform.setVisible(false); //initialy set platform combo box and label to not visible
+        lbl_platform.setVisible(false);
         
-        btn_Search.addActionListener(new ActionListener() {
+        btn_Search.addActionListener(new ActionListener() { //search for items
             @Override
             public void actionPerformed(ActionEvent evt) {
                 btnAddActionPerformed(evt);
             }
         }); 
         
-        btn_back.setText("Back");
+        btn_back.setText("Back");     //back to main menu
         panel.add(btn_back);   
         btn_back.addActionListener(new ActionListener() {
             @Override
@@ -87,78 +88,34 @@ public class SearchPanel extends Panel{
                 pm.getPanelFromFactory(2);
             }
         }); 
+        
+        jcb_Type.addActionListener (new ActionListener () { //set action listener for the item type
+          public void actionPerformed(ActionEvent e) {
+          if(jcb_Type.getSelectedItem().toString().equals("Game")) //if game selected 
+          {                                                        //set platform combo_box to visible  
+            jcb_platform.setVisible(true);
+            lbl_platform.setVisible(true);
+          }
+          else                                                     //else if movie selected  
+          {                                                        //set platform combo_box to not visible
+             jcb_platform.setVisible(false);  
+             lbl_platform.setVisible(false);
+          }
+        }
+        });
     }
 
-    
   
-        
     private void btnAddActionPerformed(ActionEvent evt)
     {
         String title, type;
-        Item p = null;
-        title = txb_Title.getText();
-        type =  jcb_Type.getSelectedItem().toString();
-        p = help.getItemByTitle(title, type);
-        int n;
-        if(p != null && (p.getType().trim().equalsIgnoreCase(type))) 
-        {
-         if(p.getType().equals("Movie"))
-         {
-            help.displayProductInfo(p);
-            if(p.getAvailablibilty() == true)                //item available   
-            {  
-               String id = p.getItemID();
-               if(!help.checkIfInBasket(id))
-               { 
-                n = JOptionPane.showConfirmDialog(null,"Would you like to add this product to your basket ?"
-                        , " ", JOptionPane.YES_NO_OPTION);
-                if(n == JOptionPane.YES_OPTION)
-                   help.createRental(p);
-                else 
-                    JOptionPane.showMessageDialog(null, "Sorry, this item is not available at the moment."); 
-               }
-               else 
-                  JOptionPane.showMessageDialog(null, "This item is already in your basket");  
-            }
-          }
-         else //game
-          {
-            help.displayProductInfo(p);
-            if(p.getAvailablibilty() == true)                //item available   
-            {  
-               String id = p.getItemID();
-               if(!help.checkIfInBasket(id))
-               { 
-                n = JOptionPane.showConfirmDialog(null,"Would you like to add this product to your basket ?"
-                        , " ", JOptionPane.YES_NO_OPTION);
-                if(n == JOptionPane.YES_OPTION)
-                { 
-                    String[] console = {"PS3", "PS4", "XboxOne"};
-                    String c = (String) JOptionPane.showInputDialog(null, "Pick platform", //get days of rental 
-                    "Pick platform", JOptionPane.QUESTION_MESSAGE, null, console,
-                    console[0]); // Initial choice
-                    if(p.getPriceCode().equals(c))
-                       help.createRental(p);
-                    else
-                    {
-                       p = help.getItemByTitleAndPlatform(title, c);
-                       if(p != null)               
-                          help.createRental(p);
-                       else
-                          JOptionPane.showMessageDialog(null, "No item for this console");  
-                    }
-                }
-               }
-               else 
-                  JOptionPane.showMessageDialog(null, "This item is already in your basket");  
-            }
-          }
-        }
-        else 
-         JOptionPane.showMessageDialog(null, "No Item Found");   
-        //display the details of the product in a dialog box
+        title = txb_Title.getText().trim(); //get title from textbox
+        type =  jcb_Type.getSelectedItem().toString().trim(); //get type from combo box
+        String c = jcb_platform.getSelectedItem().toString(); //selected console
+        help.getProductByTitle(title, type, c);
     }
     
+ 
       @Override
     public JPanel sendToWindow()
     { 
