@@ -32,15 +32,29 @@ public class Customer extends User {
         data.getRentalDetails(username);
     }
     
+    public String displayRentals(){
+        String result = "";
+        for(Rental r : rentals){
+            result += r.getItem().getProductName() + " (Days: " + r.getDaysRented() + ")\n";
+            System.out.println(r.getDaysRented());
+        }
+        return result;
+    }
+    
     public void emptyBasket(){
         basket.clear();
     }
-    public boolean rentItems(int days){
-        /*for(Item i : basket){
-            if(i.rent(days)){ 
+    public boolean rentItems(){
+        boolean ok = true;
+        for (Map.Entry<Item, Integer> entry : basket.entrySet())
+        {
+            ok = entry.getKey().rent(entry.getValue());
+            if(ok){
+                rentals.add(new Rental(entry.getKey(), entry.getValue(), entry.getKey().calcCost(entry.getValue())));
+                basket.remove(entry.getKey(), entry.getValue());
             }
-        }*/
-        return true;
+        }
+        return ok;
     }
     public double calcBasket(){
         double result = 0.0;
@@ -84,6 +98,6 @@ public class Customer extends User {
             return true;
         }
         return false;
-    } 
+    }
    
 }

@@ -34,6 +34,10 @@ public class PanelFactory {
                 panel = new RentPanel();
                 panel.setPanelManager(pm);
                 break;
+            case 4:
+                panel = new RentalsPanel();
+                panel.setPanelManager(pm);
+                break;         
             case 5:
                 panel = new BasketPanel();
                 panel.setPanelManager(pm);

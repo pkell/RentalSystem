@@ -29,6 +29,14 @@ public class Helper {
        return cust.addToBasket(i, days);
    }
    
+   public String displayRentals(){
+       return cust.displayRentals();
+   }
+   
+   public double calcBasket(){
+       return cust.calcBasket();
+   }
+   
    public Item getItemByID(String id){
        return dbConn.getItemByID(id);
    }
@@ -42,7 +50,13 @@ public class Helper {
    }
    
    public boolean rentItems(){
-       return true; //cust.rentItems();
+       if(cust.getBalance() <= calcBasket()){
+           return false;
+       }
+       if(cust.rentItems()){
+            return true;
+       }
+       return false;
    }
    
    public boolean canCustomerLogin(String user, String pass){
