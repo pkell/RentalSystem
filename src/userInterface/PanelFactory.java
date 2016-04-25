@@ -11,7 +11,7 @@ import javax.swing.*;
  * @author nrage
  */
 public class PanelFactory {
-    private Helper help;
+    private final Helper help;
     
     public PanelFactory(Helper help) {
         this.help = help;
@@ -30,6 +30,26 @@ public class PanelFactory {
                 panel = new CustomerPanel();
                 panel.setPanelManager(pm);
                 break;
+            case 3:
+                panel = new RentPanel();
+                panel.setPanelManager(pm);
+                break;
+            case 4:
+                panel = new BillPanel();
+                panel.setPanelManager(pm);
+                break;
+            case 5:
+                panel = new BasketPanel();
+                panel.setPanelManager(pm);
+                break;
+            case 6:
+                panel = new TopUpPanel();
+                panel.setPanelManager(pm);
+                break; 
+            case 7:
+                panel = new SearchPanel();
+                panel.setPanelManager(pm);
+                break; 
         }
         return panel;
     }
