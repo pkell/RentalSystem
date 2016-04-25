@@ -4,6 +4,7 @@ package userInterface;
 import staff.*;
 import users.*;
 import database.*;
+import inventory.*;
 
 public class Helper {
     private static Helper help = new Helper();
@@ -24,6 +25,26 @@ public class Helper {
 	this.dbConn = dbConn;
     }
    
+   public boolean addToBasket(Item i, int days){
+       return cust.addToBasket(i, days);
+   }
+   
+   public Item getItemByID(String id){
+       return dbConn.getItemByID(id);
+   }
+   
+   public String displayBasket(){
+       return cust.displayBasket();
+   }
+   
+   public void emptyBasket(){
+       cust.emptyBasket();
+   }
+   
+   public boolean rentItems(){
+       return true; //cust.rentItems();
+   }
+   
    public boolean canCustomerLogin(String user, String pass){
        if(dbConn.canCustomerLogin(user, pass)){
            getCustomerDetails(user);
@@ -41,6 +62,7 @@ public class Helper {
    }
 
    public boolean canManagerLogin(String user, String pass){
+       
         if(dbConn.canManagerLogin(user, pass)){
            getManagerDetails(user);
            return true;
@@ -84,3 +106,4 @@ public class Helper {
        return cust.getBalance();
    }
 }
+  

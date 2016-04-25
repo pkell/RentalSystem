@@ -3,7 +3,30 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/Users/nrage/Downloads/RentalSystem-master/src/userInterface/PanelManager.java</file>
+            <file>file:/Users/nrage/Downloads/RentalSystem-master/src/database/DatabaseInterface.java</file>
+            <file>file:/Users/nrage/Downloads/RentalSystem-master/src/inventory/Product.java</file>
+            <file>file:/Users/nrage/Downloads/RentalSystem-master/src/userInterface/CustomerPanel.java</file>
+            <file>file:/Users/nrage/Downloads/RentalSystem-master/src/inventory/Game.java</file>
+            <file>file:/Users/nrage/Downloads/RentalSystem-master/src/users/User.java</file>
+            <file>file:/Users/nrage/Downloads/RentalSystem-master/src/rentable/Rentable.java</file>
+            <file>file:/Users/nrage/Downloads/RentalSystem-master/src/database/Database.java</file>
+            <file>file:/Users/nrage/Downloads/RentalSystem-master/src/rental/Rental.java</file>
+            <file>file:/Users/nrage/Downloads/RentalSystem-master/src/userInterface/PanelFactory.java</file>
+            <file>file:/Users/nrage/Downloads/RentalSystem-master/src/userInterface/Helper.java</file>
+            <file>file:/Users/nrage/Downloads/RentalSystem-master/src/inventory/Movie.java</file>
+            <file>file:/Users/nrage/Downloads/RentalSystem-master/src/users/Customer.java</file>
             <file>file:/Users/nrage/Downloads/RentalSystem-master/src/userInterface/MainUI.java</file>
+            <file>file:/Users/nrage/Downloads/RentalSystem-master/src/userInterface/MainWindow.java</file>
+            <file>file:/Users/nrage/Downloads/RentalSystem-master/src/userInterface/StartUI.java</file>
+            <file>file:/Users/nrage/Downloads/RentalSystem-master/src/inventory/Item.java</file>
+            <file>file:/Users/nrage/Downloads/RentalSystem-master/src/userInterface/Panel.java</file>
+            <file>file:/Users/nrage/Downloads/RentalSystem-master/src/staff/StaffMember.java</file>
+            <file>file:/Users/nrage/Downloads/RentalSystem-master/src/staff/Manager.java</file>
+            <file>file:/Users/nrage/Downloads/RentalSystem-master/src/userInterface/LoginPanel.java</file>
+            <file>file:/Users/nrage/Downloads/RentalSystem-master/src/userInterface/Observer.java</file>
+            <file>file:/Users/nrage/Downloads/RentalSystem-master/src/userInterface/Subject.java</file>
+            <file>file:/Users/nrage/Downloads/RentalSystem-master/src/paymentAPI/Payment.java</file>
         </group>
     </open-files>
 </project-private>

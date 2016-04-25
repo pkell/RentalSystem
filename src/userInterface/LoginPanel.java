@@ -59,12 +59,10 @@ public class LoginPanel extends Panel{
         jPassLabel.setBounds (10, 115, 100, 25);
         jUserType.setBounds (150, 165, 100, 25);
         jPassword.setBounds (115, 115, 100, 25);
-        System.out.println("bb");
         
         jLogin.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                pm.getPanelFromFactory(2);
+            public void actionPerformed(ActionEvent e){
                 if (jUserType.getSelectedItem() == "Customer") {
                     System.out.println("aa");
                     if (help.canCustomerLogin(jUser.getText().trim(), jPassword.getText().trim())) {

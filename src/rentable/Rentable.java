@@ -2,5 +2,5 @@
 package rentable;
 
 public interface Rentable {
-    public boolean rent(double price);
+    public boolean rent(int days);
 }

@@ -5,22 +5,23 @@ import rentable.Rentable;
 
 public abstract class Item implements Rentable {
     private String itemID;
-    private String productID;
+    private String productName;
     
-    public Item(String item, String product){
+    public Item(String item, String name){
         itemID = item;
-        productID = product;
+        productName = name;
     }
     
     public String getItemID(){
         return itemID;
     }
     
-    public String getProductID(){
-        return productID;
+    public String getProductName(){
+        return productName;
     }
     
+    public abstract double calcCost(int days);
     @Override
-    public abstract boolean rent(double price);
+    public abstract boolean rent(int days);
       
 }

@@ -1,6 +1,6 @@
 
 package inventory;
-
+import paymentAPI.Payment;
 
 public class Movie extends Item {
     
@@ -12,7 +12,17 @@ public class Movie extends Item {
     }
 
      @Override
-     public boolean rent(double price){
-         return true;
+     public boolean rent(int days){
+         if(days <= maxDays){
+             if(Payment.acceptPayment(days * pricePerDay)){
+                 return true;
+             }
+         }
+         return false;
+     }
+     
+     @Override
+     public double calcCost(int days){
+         return days * pricePerDay;
      }
 }
