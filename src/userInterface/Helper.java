@@ -102,10 +102,15 @@ public class Helper {
    {
        return cust.footer();
    }
-    public Item getItemByTitle(String title)
+    public Item getItemByTitle(String title, String type)
     {
-        return dbConn.getItemByTitle(title);
-     }
+        return dbConn.getItemByTitle(title, type);
+    }
+    
+    public Item getItemByTitleAndPlatform(String title, String platform)
+    {
+        return dbConn.getItemByTitleAndPlatform(title,platform);
+    }
     
     public Item getItemByID(String id)
     {
@@ -147,8 +152,28 @@ public class Helper {
         cust.setFrequentRenterPoints(p);
     }
     
-    public void createProduct(String ID, String title, String type, String genre, int copies)
+    public String getAccountType()
     {
-        dbConn.createProduct(ID, title, type, genre, 0);
+        return cust.getAccountType();
+    }
+    
+    public void setAccountType(String a)
+    {
+        cust.setAccountType(a);
+    }
+    
+    public boolean checkIfInBasket(String id)
+    {
+       return cust.checkIfInBasket(id);
+    }
+    
+    public void displayProductInfo(Item p)
+    {
+      cust.displayProductInfo(p);
+    }
+    
+    public void createRental(Item p)
+    {
+      cust.createRental(p);
     }
 }
