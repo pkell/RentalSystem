@@ -4,15 +4,42 @@ package inventory;
 public class Game extends Item {
   
     private Item item;
- 
-    
-     public Game(String product, String title, String item, String type, int copies, String genre, String price)
-     {
-        super(product, title, item, type, copies, genre, price);
- 
-     }   
+    private String platform;
+    private boolean available;
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
   
+    public Game(Product p1, String item, String priceCode, String _console) 
+    {
+        super(p1, item, priceCode);
+        available = true;
+        platform = _console;
+    }
      
+    public void setPlatform(String console)
+    {
+        platform = console;
+    }
+    
+    public String getPlatform()
+    {
+        return platform;
+    }
+    
     @Override
      public String getProductID()
     {

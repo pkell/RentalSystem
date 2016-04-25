@@ -4,14 +4,33 @@ package inventory;
 public class Movie extends Item {
  
     private Item item;
- 
+    private boolean available;
+    private boolean bluRay;
     
-    public Movie(String product, String title, String type, String genre,int copies, String item, String priceCode)
-    { 
-        super(product, title, type, genre, copies, item, priceCode);
-      
-    } 
+    public Movie(Product p1, String item, String priceCode, boolean _bluRay) 
+    {
+        super(p1, item, priceCode);
+        available = true;
+        bluRay = _bluRay;
+    }
 
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
+    public boolean getBluRay() {
+        return bluRay;
+    }
+
+    public void setBluRay(boolean bluRay) {
+        bluRay = bluRay;
+    }
+
+    
     public Item getItem() {
         return item;
     }
