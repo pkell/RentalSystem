@@ -70,6 +70,7 @@ public class LoginPanel extends Panel{
                     }
                 } else if (jUserType.getSelectedItem() == "Staff") {
                     if (help.canStaffLogin(jUser.getText().trim(), jPassword.getText().trim())) {
+                        pm.getPanelFromFactory(7);
                     }
                 } else if (jUserType.getSelectedItem() == "Manager") {
                     if (help.canManagerLogin(jUser.getText().trim(), jPassword.getText().trim())) {

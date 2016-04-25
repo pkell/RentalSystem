@@ -15,9 +15,10 @@ public class StartUI {
         MainWindow window = new MainWindow();
         /* Starts database connection */
         DatabaseInterface dbConn = new Database();
+        DatabaseAccess dba = new DatabaseAccess(dbConn);
         /* Will process input taken from client GUI */
         Helper help = Helper.getInstance();
-        help.setDbConn(dbConn);
+        help.setDbAccess(dba);
         /* Panel factory to display panels on window */
         PanelFactory panelFac = new PanelFactory(help);
         /* Subject in observer pattern */

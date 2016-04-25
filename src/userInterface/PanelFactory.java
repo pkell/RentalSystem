@@ -45,7 +45,11 @@ public class PanelFactory {
             case 6:
                 panel = new TopUpPanel();
                 panel.setPanelManager(pm);
-                break;   
+                break;  
+            case 7:
+                panel = new StaffPanel();
+                panel.setPanelManager(pm);
+                break;  
             
         }
         return panel;

@@ -8,7 +8,7 @@ import inventory.*;
 
 public class Helper {
     private static Helper help = new Helper();
-    private DatabaseInterface dbConn;
+    private DatabaseAccess dba;
     private Customer cust = null;
     private StaffMember staff = null;
     private Manager manager = null;
@@ -20,9 +20,13 @@ public class Helper {
       return help;
    }
    
-   public void setDbConn(DatabaseInterface dbConn)
+   public void deleteUser(String user){
+       dba.deleteUser(user);
+   }
+   
+   public void setDbAccess(DatabaseAccess dba)
    {
-	this.dbConn = dbConn;
+	this.dba = dba;
     }
    
    public boolean addToBasket(Item i, int days){
@@ -38,7 +42,7 @@ public class Helper {
    }
    
    public Item getItemByID(String id){
-       return dbConn.getItemByID(id);
+       return dba.getItemByID(id);
    }
    
    public String displayBasket(){
@@ -60,7 +64,7 @@ public class Helper {
    }
    
    public boolean canCustomerLogin(String user, String pass){
-       if(dbConn.canCustomerLogin(user, pass)){
+       if(dba.canCustomerLogin(user, pass)){
            getCustomerDetails(user);
            return true;
        }
@@ -68,7 +72,7 @@ public class Helper {
    }
    
    public boolean canStaffLogin(String user, String pass){
-       if(dbConn.canStaffLogin(user, pass)){
+       if(dba.canStaffLogin(user, pass)){
            getStaffDetails(user);
            return true;
        }
@@ -77,7 +81,7 @@ public class Helper {
 
    public boolean canManagerLogin(String user, String pass){
        
-        if(dbConn.canManagerLogin(user, pass)){
+        if(dba.canManagerLogin(user, pass)){
            getManagerDetails(user);
            return true;
        }

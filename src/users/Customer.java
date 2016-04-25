@@ -10,6 +10,7 @@ import rental.Rental;
 
 public class Customer extends User {
     private Database data = new Database();
+    private boolean adult;
     private HashMap<Item, Integer> basket =  new HashMap<Item, Integer>();
     private ArrayList<Rental> rentals = new ArrayList<Rental>();
     private double balance;
@@ -18,8 +19,12 @@ public class Customer extends User {
         super(user);
         getBalanceFromDatabase();
         getRentalDetails();
+        setAdultStatus();
     }
     
+    public void setAdultStatus(){
+        data.isCustomerAdult(username);
+    }
     public String displayBasket(){
         String result = "";
         for (Map.Entry<Item, Integer> entry : basket.entrySet())
@@ -36,7 +41,6 @@ public class Customer extends User {
         String result = "";
         for(Rental r : rentals){
             result += r.getItem().getProductName() + " (Days: " + r.getDaysRented() + ")\n";
-            System.out.println(r.getDaysRented());
         }
         return result;
     }

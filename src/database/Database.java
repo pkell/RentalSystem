@@ -54,4 +54,13 @@ public class Database implements DatabaseInterface {
         }
         return null;
     }
+    
+    @Override
+    public void deleteUser(String user){
+    }
+    
+    public boolean isCustomerAdult(String user){
+        return true;
+    }
+
 }
