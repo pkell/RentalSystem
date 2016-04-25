@@ -1,12 +1,11 @@
 package inventory;
 
-
  abstract class Price
  { 
     abstract String getPriceCode(); 
     abstract double getCharge(int daysRented); 
     int getFrequentRenterPoints(int daysRented){ 
-    return 1;
+    return 2;
     }
 } 
 class ChildrensPrice extends Price 
@@ -37,7 +36,7 @@ double getCharge(int daysRented){
  return daysRented * 3; 
  } 
 int getFrequentRenterPoints(int daysRented) { 
- return (daysRented > 1) ? 2: 1; 
+ return (daysRented > 1) ? 20: 1; 
  } 
  
  } 

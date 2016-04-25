@@ -5,11 +5,14 @@
  */
 package userInterface;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -27,13 +30,13 @@ public class BillPanel extends Panel {
     panel = new JPanel(); 
        
         panel.setLayout (null);
-        h = new JLabel(help.header());
+        h = new JLabel(help.header(), SwingConstants.CENTER);
         btn_back = new JButton("Back");
-        
+        h.setVerticalAlignment(SwingConstants.TOP);
         panel.add(h);
         panel.add(btn_back);
         
-        h.setBounds (260, 5, 400, 400);
+        h.setBounds (260, 5, 400, 600);
         btn_back.setBounds(100, 265, 100, 25);
         
          btn_back.addActionListener(new ActionListener() {

@@ -1,12 +1,9 @@
-
 package userInterface;
 
-import Rental.Rental;
 import staff.*;
 import users.*;
 import database.*;
 import inventory.Item;
-import java.util.Vector;
 
 public class Helper {
     private static final Helper help = new Helper();
@@ -87,69 +84,29 @@ public class Helper {
        return cust.getBalance();
    }
 
-   
-   public void addRental(Rental r)
-   {
-       cust.addRental(r);
-   }
-  
    public String header()
    {
        return cust.header();
    }
    
-   public String footer()
-   {
-       return cust.footer();
-   }
+    public void emptyBasket()
+    {
+      cust.emptyBasket();    
+    }
+
     public Item getItemByTitle(String title, String type)
     {
         return dbConn.getItemByTitle(title, type);
-    }
-    
-    public Item getItemByTitleAndPlatform(String title, String platform)
-    {
-        return dbConn.getItemByTitleAndPlatform(title,platform);
-    }
+     }
     
     public Item getItemByID(String id)
     {
         return dbConn.getItemByID(id);
      }
     
-    public double getTotalCharge() 
-    {
-        return cust.getTotalCharge();  
-    }
-    
-    public void emptyBasket()
-    {
-      cust.emptyBasket();    
-    }
-    
-    public void addToBasket(Rental r)
-    {
-        cust.addToBasket(r);
-    }
-    
-    public Vector getBasket()
-    {
-     return cust.getBasket();   
-    }
-    
     public int getTotalFrequentRenterPoints()
     {
         return cust.getTotalFrequentRenterPoints();
-    }
-    
-    public int getFrequentRenterPoints()
-    {
-        return cust.getFrequentRenterPoints();
-    }
-    
-    public void setFrequentRenterPoints(int p)
-    {
-        cust.setFrequentRenterPoints(p);
     }
     
     public String getAccountType()
@@ -157,23 +114,33 @@ public class Helper {
         return cust.getAccountType();
     }
     
-    public void setAccountType(String a)
+    public void askForRental(Item p)
     {
-        cust.setAccountType(a);
+      cust.askForRental(p);
     }
     
-    public boolean checkIfInBasket(String id)
+    public void rent()
     {
-       return cust.checkIfInBasket(id);
+        cust.rent();
+    }
+
+    public String displayBasket()
+    {
+        return cust.displayBasket();
     }
     
-    public void displayProductInfo(Item p)
+    public void getProductByID(String id)
     {
-      cust.displayProductInfo(p);
+        cust.getProductByID(id);
     }
     
-    public void createRental(Item p)
+    public void getProductByTitle(String title, String type, String c)
     {
-      cust.createRental(p);
+        cust.getProductByTitle(title, type, c);
+    }
+    
+    public Item getItemByTitleAndPlatform(String title, String c)
+    {
+       return dbConn.getItemByTitleAndPlatform(title,c); 
     }
 }

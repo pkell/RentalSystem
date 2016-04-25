@@ -5,15 +5,10 @@
  */
 package userInterface;
 
-import Rental.Rental;
-import inventory.Item;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Enumeration;
-import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -28,13 +23,11 @@ private final JTextField txb_itemID;
 private final JButton btn_add, btn_back;
 private final JLabel lbl_itemID;
 private final Helper help = Helper.getInstance();
-private Vector basket;
 
 public RentPanel() 
 {
     panel = new JPanel();
     panel.setLayout(null);
-    basket = help.getBasket();
     
     lbl_itemID = new JLabel("Item ID: ");
     panel.add(lbl_itemID);
@@ -51,7 +44,7 @@ public RentPanel()
         btn_add.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-               btnAddActionPerformed(evt);
+               btnAddActionPerformed();
             }
         }); 
         
@@ -68,30 +61,10 @@ public RentPanel()
         });  
 }
 
-private void btnAddActionPerformed(ActionEvent evt) {                           
+private void btnAddActionPerformed() {                           
         //get the product from the database and check if there are any copies left 
-        String id;
-        Item p = null;
-        id = txb_itemID.getText();
-        p = help.getItemByID(id);     
-        
-        if(p != null)
-        {
-         if(p.getAvailablibilty() == true)                //item not available   
-         {             
-            if(!help.checkIfInBasket(id))
-            {
-                help.createRental(p);
-            }
-            else
-             JOptionPane.showMessageDialog(null, "This item is already in your basket");   
-         }
-         else
-             JOptionPane.showMessageDialog(null, "Sorry, this item is not available at the moment.");
-        }
-        else 
-            JOptionPane.showMessageDialog(null, "Sorry, this item doesn't exist in our system");
-   
+        String id = txb_itemID.getText();
+        help.getProductByID(id.trim()); 
     }                             
     
     @Override

@@ -3,8 +3,7 @@ package inventory;
 
 import rentable.Rentable;
 
-public class Item extends Product implements Rentable {
-    
+public class Item extends Product implements Rentable { 
     public static final String CHILDRENS = "Childrens"; 
     public static final String REGULAR = "Regular"; 
     public static final String NEW_RELEASE = "New Release";  
@@ -12,14 +11,11 @@ public class Item extends Product implements Rentable {
     public static final String PS3 = "PS3"; 
     public static final String PS4 = "PS4"; 
     public static final String XBOXONE = "Xbox One";
-   
     
     private String itemID;
     private Product product; 
-    private String priceCode;
-    private boolean available;
-
-   
+    private boolean available;  
+    private Price price; 
     
     public Item(String product, String title, String type, String genre, int copies, String item, String priceCode)
     {
@@ -35,6 +31,43 @@ public class Item extends Product implements Rentable {
         itemID = item;
         setPriceCode(priceCode);
         available = true;
+    }
+    
+    public String getConsole()
+    {
+        return product.getConsole();
+    }
+    
+    public void setPriceCode(String arg)
+    {
+        switch (arg) 
+            {
+                case REGULAR: 
+                price = new RegularPrice(); 
+                break; 
+                case CHILDRENS: 
+                price = new ChildrensPrice(); 
+                break; 
+                case NEW_RELEASE: 
+                price = new NewReleasePrice(); 
+                break; 
+                case PS3: 
+                price = new ps3Price(); 
+                break; 
+                case PS4: 
+                price = new ps4Price(); 
+                break; 
+                case XBOXONE: 
+                price = new xboxOnePrice(); 
+                break; 
+                default: 
+                throw new IllegalArgumentException("Incorrect Price Code"); 
+            }   
+    }
+    
+    public String getPriceCode() 
+    { 
+        return price.getPriceCode(); 
     }
     
     public boolean getAvailablibilty()
@@ -82,13 +115,7 @@ public class Item extends Product implements Rentable {
     {
         return itemID;
     }
-    
-    
-    public String getPriceCode() 
-    { 
-        return price.getPriceCode(); 
-    }
-    
+ 
     
     @Override
     public void setProductID(String ID)
@@ -112,37 +139,6 @@ public class Item extends Product implements Rentable {
     {
         return product.getType();
     }
-      
-    public void setPriceCode(String arg) 
-    {  
-            switch (arg) 
-            {
-                case REGULAR: 
-                price = new RegularPrice(); 
-                break; 
-                case CHILDRENS: 
-                price = new ChildrensPrice(); 
-                break; 
-                case NEW_RELEASE: 
-                price = new NewReleasePrice(); 
-                break; 
-                case PS3: 
-                price = new ps3Price(); 
-                break; 
-                case PS4: 
-                price = new ps4Price(); 
-                break; 
-                case XBOXONE: 
-                price = new xboxOnePrice(); 
-                break; 
-                default: 
-                throw new IllegalArgumentException("Incorrect Price Code"); 
-            }   
-    } 
-    
-   private Price price; 
- 
- 
  
     public double getCharge(int daysRented) //gets charge for the Item rented
     { 
