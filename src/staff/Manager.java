@@ -8,9 +8,4 @@ public class Manager extends User {
         super(user);
     }
     
-    @Override
-    public boolean login(String pass){
-        return true;
-    }
-    
 }

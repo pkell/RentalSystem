@@ -10,9 +10,4 @@ public class StaffMember extends User {
         super(user);
     }
     
-    @Override
-    public boolean login(String pass){
-        return data.canLogin(this.username, pass);
-    }
-    
 }
