@@ -23,7 +23,7 @@ public class Customer extends User {
     }
     
     public void setAdultStatus(){
-        data.isCustomerAdult(username);
+        adult = data.isCustomerAdult(username);
     }
     
     public boolean getAdultStatus(){
