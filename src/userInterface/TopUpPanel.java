@@ -77,10 +77,10 @@ public class TopUpPanel extends Panel {
 	return this.panel; 
     }
 	
+
     @Override
     public void setPanelManager(PanelManager pm)
     {
 	this.pm = pm;
     }
-    
 }

@@ -17,8 +17,8 @@ import javax.swing.JButton;
 public class CustomerPanel extends Panel {
     private JLabel jtest;
     private JPanel panel;
-    private final JButton btn_rentProdcut, btn_topUp, btn_searchProducts, btn_logout, btn_basket, btn_checkRentedItems;
-    private final JLabel lbl_welcome, lbl_custName, /*lbl_rentalPoints,*/ lbl_points, lbl_currentBalance, lbl_balance, /*lbl_accType,*/ lbl_acc;
+    private final JButton btn_rentProdcut, btn_topUp, btn_logout, btn_basket, btn_checkRentedItems;
+    private final JLabel lbl_welcome, lbl_custName, lbl_points, lbl_currentBalance, lbl_balance, lbl_acc;
     private PanelManager pm;
     private Helper help = Helper.getInstance();
 
@@ -30,7 +30,6 @@ public class CustomerPanel extends Panel {
         //construct components
         btn_rentProdcut = new JButton ("Rent Product");
         btn_topUp = new JButton ("Top Up");
-        btn_searchProducts = new JButton ("Search Products");
         btn_logout = new JButton ("Logout");
         btn_basket = new JButton ("Basket");
         btn_checkRentedItems = new JButton ("Check rented Items");
@@ -50,7 +49,6 @@ public class CustomerPanel extends Panel {
         //add components
         panel.add (btn_rentProdcut);
         panel.add (btn_topUp);
-        panel.add (btn_searchProducts);
         panel.add (btn_basket);
         panel.add (btn_logout);
         panel.add (btn_checkRentedItems);
@@ -64,7 +62,6 @@ public class CustomerPanel extends Panel {
         //panel.add (lbl_accType);
         //set component bounds (only needed by Absolute Positioning)
         btn_rentProdcut.setBounds (240, 70, 200, 50);
-        btn_searchProducts.setBounds (240, 125, 200, 50);
         btn_topUp.setBounds (240, 180, 200, 50);
         btn_checkRentedItems.setBounds (240, 235, 200, 50);
         btn_basket.setBounds (240, 290, 200, 50);
@@ -94,12 +91,6 @@ public class CustomerPanel extends Panel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 pm.getPanelFromFactory(5);
-                }
-                });
-        btn_searchProducts.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                pm.getPanelFromFactory(7);
                 }
                 });
         btn_checkRentedItems.addActionListener(new ActionListener() {

@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 public abstract class Panel 
 {
 	protected PanelManager panelMgr;
-	protected Helper help;
 	protected JPanel panel;
 	
 	public Panel()
@@ -22,9 +21,5 @@ public abstract class Panel
 	public void setPanelManager(PanelManager panelMgr)
 	{
 		this.panelMgr = panelMgr;
-	}
-	public void setProcessInput(Helper help)
-	{
-		this.help = help;
 	}
 }
