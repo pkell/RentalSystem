@@ -74,6 +74,7 @@ public class LoginPanel extends Panel{
                     }
                 } else if (jUserType.getSelectedItem() == "Manager") {
                     if (help.canManagerLogin(jUser.getText().trim(), jPassword.getText().trim())) {
+                        pm.getPanelFromFactory(8);
                     }
                 }
             }

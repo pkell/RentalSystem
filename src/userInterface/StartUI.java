@@ -15,7 +15,8 @@ public class StartUI {
         MainWindow window = new MainWindow();
         /* Starts database connection */
         DatabaseInterface dbConn = new Database();
-        DatabaseAccess dba = new DatabaseAccess(dbConn);
+        DatabaseAccess dba = DatabaseAccess.getInstance();
+        dba.setDbconn(dbConn);
         /* Will process input taken from client GUI */
         Helper help = Helper.getInstance();
         help.setDbAccess(dba);

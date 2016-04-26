@@ -8,8 +8,8 @@ public class Game extends Item {
     private final int maxDays = 10;
     private final int pricePerDay = 1;
     
-     public Game(String item, String name){
-         super(item, name);
+     public Game(String item, String name, boolean adult){
+         super(item, name, adult);
     }   
      
      @Override

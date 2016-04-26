@@ -21,7 +21,23 @@ public class Helper {
    }
    
    public void deleteUser(String user){
-       dba.deleteUser(user);
+       staff.deleteUser(user);
+   }
+   
+   public void removeItem(String itemId){
+       dba.removeItem(itemId);
+   }
+   
+   public void deleteStaff(String user){
+       manager.deleteStaff(user);
+   }
+   
+   public void addMovie(String id, String name, boolean adult){
+       manager.addMovie(id, name, adult);
+   }
+ 
+   public void addGame(String id, String name, boolean adult){
+       manager.addGame(id, name, adult);
    }
    
    public void setDbAccess(DatabaseAccess dba)
@@ -122,6 +138,14 @@ public class Helper {
    
    public double getBalance(){
        return cust.getBalance();
+   }
+   
+   public boolean isCustomerAdult(){
+       return cust.getAdultStatus();
+   }
+   
+   public void grantAdultAccess(String user){
+       staff.grantAdultAccess(user);
    }
 }
   

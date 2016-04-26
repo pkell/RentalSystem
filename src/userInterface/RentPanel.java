@@ -13,11 +13,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import inventory.Item;
 import java.awt.Dimension;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author Kamil
- */
+
 public class RentPanel extends Panel{
 private PanelManager pm;
 private final JPanel panel;
@@ -69,7 +67,12 @@ public RentPanel()
             public void actionPerformed(ActionEvent evt) {
                 Item i = help.getItemByID(txt_item.getText());
                 if(help.getItemByID(txt_item.getText().trim()) != null){
+                    if((i.isAdultRated()) && !(help.isCustomerAdult())){
+                        JOptionPane.showMessageDialog(null, "Adult access is needed");
+                    }
+                    else{
                     help.addToBasket(i,  Integer.parseInt(txt_days.getText().trim()));
+                    }
                 }
             }
         }); 

@@ -78,6 +78,13 @@ public class StaffPanel extends Panel {
             help.deleteUser(txt_del.getText().trim());
             }
         });
+  
+        btn_grant.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            help.grantAdultAccess(txt_del.getText().trim());
+            }
+        });
     }
     
     @Override

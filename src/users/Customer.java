@@ -1,6 +1,6 @@
 package users;
 
-import database.Database;
+import database.DatabaseAccess;
 import paymentAPI.Payment;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,7 +9,7 @@ import inventory.Item;
 import rental.Rental;
 
 public class Customer extends User {
-    private Database data = new Database();
+    private DatabaseAccess data = DatabaseAccess.getInstance();
     private boolean adult;
     private HashMap<Item, Integer> basket =  new HashMap<Item, Integer>();
     private ArrayList<Rental> rentals = new ArrayList<Rental>();
@@ -25,6 +25,11 @@ public class Customer extends User {
     public void setAdultStatus(){
         data.isCustomerAdult(username);
     }
+    
+    public boolean getAdultStatus(){
+        return adult;
+    }
+    
     public String displayBasket(){
         String result = "";
         for (Map.Entry<Item, Integer> entry : basket.entrySet())

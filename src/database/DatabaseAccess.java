@@ -6,15 +6,40 @@
 package database;
 
 import inventory.Item;
+import rental.Rental;
+import java.util.ArrayList;
 
 
 public class DatabaseAccess {
     private DatabaseInterface dbconn;
+    private static DatabaseAccess dba = new DatabaseAccess();
     
-    public DatabaseAccess(DatabaseInterface db){
-        dbconn = db;
+    private DatabaseAccess(){
     }
     
+    public void setDbconn(DatabaseInterface dbconn){
+        this.dbconn = dbconn;
+    }
+    
+    public void removeItem(String itemId){
+        dbconn.removeItem(itemId);
+    }
+    
+    public void addMovie(String id, String name, boolean adult){
+        dbconn.addMovie(id, name, adult);
+    }
+    
+    public void addGame(String id, String name, boolean adult){
+        dbconn.addGame(id, name, adult);
+    }
+    
+   public void deleteStaff(String user){
+       dbconn.deleteStaff(user);
+   }
+   public void grantAdultAccess(String user){
+       dbconn.grantAdultAccess(user);
+   }
+   
    public boolean canCustomerLogin(String user, String pass){
        return dbconn.canCustomerLogin(user, pass);
    }
@@ -34,4 +59,26 @@ public class DatabaseAccess {
    public Item getItemByID(String id){
        return dbconn.getItemByID(id);
    }
+   
+   public static DatabaseAccess getInstance(){
+       return dba;
+   } 
+ 
+    public double getCustomerBalance(String user){
+        return dbconn.getCustomerBalance(user);
+    }
+  
+    public void updateBalance(String username, double amount){
+        dbconn.updateBalance(username, amount);
+    }
+    
+
+    public ArrayList<Rental> getRentalDetails(String user){
+        return dbconn.getRentalDetails(user);
+    }
+    
+    public boolean isCustomerAdult(String user){
+        return dbconn.isCustomerAdult(user);
+    }
+
 }
