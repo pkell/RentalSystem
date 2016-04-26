@@ -13,16 +13,12 @@ public class StartUI {
     
     public static void main(String [] args){
         MainWindow window = new MainWindow();
-        /* Starts database connection */
         DatabaseInterface dbConn = new Database();
         DatabaseAccess dba = DatabaseAccess.getInstance();
         dba.setDbconn(dbConn);
-        /* Will process input taken from client GUI */
         Helper help = Helper.getInstance();
         help.setDbAccess(dba);
-        /* Panel factory to display panels on window */
         PanelFactory panelFac = new PanelFactory(help);
-        /* Subject in observer pattern */
         PanelManager panelMgr = new PanelManager(panelFac);
         panelMgr.registerObserver(window);
     }
