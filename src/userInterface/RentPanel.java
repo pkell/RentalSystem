@@ -68,7 +68,6 @@ public RentPanel()
                 Item i = help.getItemByID(txt_item.getText());
                 if(help.getItemByID(txt_item.getText().trim()) != null){
                     if((i.isAdultRated()) && !(help.isCustomerAdult())){
-                        System.out.println(help.isCustomerAdult());
                         JOptionPane.showMessageDialog(null, "Adult access is needed");
                     }
                     else{
