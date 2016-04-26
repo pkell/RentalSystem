@@ -102,6 +102,7 @@ public class CustomerPanel extends Panel {
         btn_logout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                help.logout();
                 pm.getPanelFromFactory(1);
                 }
                 });

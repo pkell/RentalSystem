@@ -147,5 +147,11 @@ public class Helper {
    public void grantAdultAccess(String user){
        staff.grantAdultAccess(user);
    }
+   
+   public void logout(){
+       cust = null;
+       staff = null;
+       manager = null;
+   }
 }
   
