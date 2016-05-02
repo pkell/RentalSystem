@@ -6,6 +6,7 @@ public class Movie extends Item {
     
     private final int maxDays = 2;
     private final int pricePerDay = 3;
+    private boolean available;
     
     public Movie(String item, String product, boolean adult){
         super(item, product, adult);

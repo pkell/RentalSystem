@@ -59,6 +59,8 @@ public class Customer extends User {
         {
             ok = entry.getKey().rent(entry.getValue());
             if(ok){
+                entry.getKey().rent(entry.getValue());
+                balance -= entry.getKey().calcCost(entry.getValue());
                 rentals.add(new Rental(entry.getKey(), entry.getValue(), entry.getKey().calcCost(entry.getValue())));
                 basket.remove(entry.getKey(), entry.getValue());
             }

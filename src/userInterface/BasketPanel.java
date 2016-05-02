@@ -29,7 +29,7 @@ public class BasketPanel extends Panel{
         btn_rent = new JButton("Rent");
         btn_back = new JButton("Back");
         btn_clear = new JButton("Empty the Basket");
-        lbl_basket = new JLabel("<html><h1>Items in basket<h1>");
+        lbl_basket = new JLabel("Items in basket");
         textArea = new JTextArea(help.displayBasket(), 5, 20);
         scrollPane = new JScrollPane(textArea); 
         textArea.setEditable(false);

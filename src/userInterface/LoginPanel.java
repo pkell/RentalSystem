@@ -64,7 +64,6 @@ public class LoginPanel extends Panel{
             @Override
             public void actionPerformed(ActionEvent e){
                 if (jUserType.getSelectedItem() == "Customer") {
-                    System.out.println("aa");
                     if (help.canCustomerLogin(jUser.getText().trim(), jPassword.getText().trim())) {
                         pm.getPanelFromFactory(2);
                     }
